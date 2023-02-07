@@ -15,7 +15,7 @@ calcula_grado(Polinomio,Grado):-
 
 /* Caso base: determinamos que la posición es el último cero registrado
 */
-find_last_non_zero([],Count,LastNonZero,Position) :-
+find_last_non_zero([],_,LastNonZero,Position) :-
 Position is LastNonZero,
 !.
 
