@@ -15,7 +15,7 @@ add_zeros(Degree,Coef,[0|Poly]):-
 %Le pegamos el degree hasta adelante desde el inicio%
 %Poly serán los ceros + el coef
 
-create_polynomial(Degree,Coef,[Degree|Poly]):-
+create_polynomial(Degree,Coef,Poly):-
     NewDegree is Degree-1, /*Ajustamos el degree para no poner ceros de mas*/
     add_zeros(NewDegree,Coef,Poly).
 
