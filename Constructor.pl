@@ -1,6 +1,6 @@
 %base case
 % Regresamos como cola de la lista el Coef
-add_zeros(-1,Coef,Coef):-
+add_zeros(-1,Coef,[Coef]):-
     !.
 
 /*Caso no base, agregamos un cero y entre el grado y el futuro Coef
