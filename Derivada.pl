@@ -1,9 +1,9 @@
 %-------Diferenciación------%
 derivate_polynomial(_, _,[],[]):-
     !.
-derivate_polynomial(Degree, DirDegree, [Coef|Poly], [DirCoef | X]):-
-    DirCoef is Coef*DirDegree,
-    NewDirDegree is DirDegree +1,
+derivate_polynomial(Degree, DerDegree, [Coef|Poly], [DerCoef | X]):-
+    DerCoef is Coef*DirDegree,
+    NewDerDegree is DerDegree +1,
     derivate_polynomial(Degree, NewDirDegree, Poly,  X).
 
 
