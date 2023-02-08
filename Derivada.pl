@@ -2,19 +2,17 @@
 derivate_polynomial(_, _,[],[]):-
     !.
 derivate_polynomial(Degree, DirDegree, [Coef|Poly], [DirCoef | X]):-
-    Mult is DirDegree,
-    DirCoef is Coef*Mult,
+    DirCoef is Coef*DirDegree,
     NewDirDegree is DirDegree +1,
     derivate_polynomial(Degree, NewDirDegree, Poly,  X).
 
-derivate_polynomial(_, 0, [_|Poly],  [_|X]):-
-    derivate_polynomial(_, 1, Poly,  X).
 
+%derivate(i,o)
 derivate([_|Poly], X):-
     calcula_grado(Poly,DegreeDer),
     Degree is DegreeDer +1,
     derivate_polynomial(Degree, 1, Poly, X).
-derivate().
+
 /*
 Regla que calcula el grado de un polinomio pelón
 */
