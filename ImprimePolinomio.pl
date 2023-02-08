@@ -1,33 +1,28 @@
-/*
-clasifica(X):-
-	write(X),nl,
-	(	X<0 ->
-		write("El argumento es negativo."),nl
-	;	
-	    write("El argumento es positivo."),nl	
-	).
-*/
+write_polynomial(Degree, I, [Coef|Poly]):-
+    %Solo imprime coeficientes diferentes de 0
+    (	Coef=\=0 ->
+    	%imprime el signo del coeficientes
+        (	Coef<0 ->
+		    write(Coef)
+	    ;   write("+"),write(Coef)
+	    ),
+        ( I =\= 0 ->
+            write("X^"),write(I)
+            ;
+            write("")
+        )
+        ;
+        write("")
+	),
+    NewI is I+1,
+    write_polynomial(Degree, NewI, Poly).
+
 write_polynomial(_,_, []):-
     nl,!.
-
-write_polynomial(Degree, 0, [Coef,Poly]):-
-    write("entre"),nl,
-    write(Coef),
-    write_polynomial(Degree, 1, Poly).
-
-write_polynomial(Degree, I, [Coef,Poly]):-
-    (	Coef<0 ->
-		   write(Coef)
-	;   write("+"),write(Coef)
-	),
-    write("X^"),write(I),
-    write_polynomial(Degree, I, [Coef,Poly]).
 
 write_polynomial(Poly):-
     calcula_grado(Poly, Degree),
     write_polynomial(Degree, 0,Poly).
-
-
 
 /*
 Regla que calcula el grado de un polinomio pelón
