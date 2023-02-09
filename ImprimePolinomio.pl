@@ -1,28 +1,57 @@
-write_polynomial(Degree, I, [Coef|Poly]):-
-    %Solo imprime coeficientes diferentes de 0
-    (	Coef=\=0 ->
-    	%imprime el signo del coeficientes
-        (	Coef<0 ->
-		    write(Coef)
-	    ;   write("+"),write(Coef)
-	    ),
-        ( I =\= 0 ->
-            write("X^"),write(I)
+write_polynomial(Degree, I,[Coef|Poly]):-
+        %Solo imprime coeficientes diferentes de 0
+        (	Coef=\=0 ->
+            %imprime el signo del coeficientes
+            (	Coef<0 ->
+                %Vemos si escribir o no el uno
+                (Coef =\= -1 ->
+                    write(Coef);
+                    (   I=:=0 ->
+                        write(Coef)
+                        ;
+                        write("-")
+                    ) 
+                )
+            ;
+                (Degree =\= I ->
+                    write("+");
+                    write("")
+                )   
+            ,
+                %Vemos si escribir o no el uno
+                (Coef=\=1->
+                    write(Coef);
+                    (   I=:=0 ->
+                        write(Coef)
+                        ;
+                        write("")
+                    ) 
+                )
+            ),
+            ( I =\= 0 ->
+                write("X"),
+                (
+                    I=\=1 ->
+                        write("^"),write(I);
+                        write("")
+                )
+                ;
+                write("")
+            )
             ;
             write("")
-        )
-        ;
-        write("")
-	),
-    NewI is I+1,
-    write_polynomial(Degree, NewI, Poly).
+	    )
+    ,
+    NewI is I-1,
+    write_polynomial(Degree,NewI,Poly).
 
-write_polynomial(_,_, []):-
+write_polynomial(_,-1,[]):-
     nl,!.
 
 write_polynomial(Poly):-
     calcula_grado(Poly, Degree),
-    write_polynomial(Degree, 0,Poly).
+    reverse(Poly, NewPoly),
+    write_polynomial(Degree, Degree,NewPoly).
 
 /*
 Regla que calcula el grado de un polinomio pelón
