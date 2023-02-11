@@ -2,9 +2,9 @@
 derivate_polynomial(_, _,[],[]):-
     !.
 derivate_polynomial(Degree, DerDegree, [Coef|Poly], [DerCoef | X]):-
-    DerCoef is Coef*DirDegree,
+    DerCoef is Coef*DerDegree,
     NewDerDegree is DerDegree +1,
-    derivate_polynomial(Degree, NewDirDegree, Poly,  X).
+    derivate_polynomial(Degree, NewDerDegree, Poly,  X).
 
 
 %derivate(i,o)
