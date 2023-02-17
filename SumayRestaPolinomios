@@ -1,0 +1,36 @@
+%Primero tenemos el caso base para cuando ya nos acabamos los elementos de la lista que queremos sumar.
+%suma(i,i,o).
+suma([],[],[]).
+
+%Después hacemos el caso donde son del mismo tamaño.
+suma([X|Poli1],[Y|Poli2],[Z|Polir]):-
+	Z is X+Y,
+	suma(Poli1,Poli2,Polir).
+
+%Estas dos partes adicionales las ponemos para cuando los polinomios son de diferente tamaño.
+suma([],[Y|Poli2],[Z|Polir]):-
+	Z is 0+Y,
+	suma([],Poli2,Polir).
+suma([X|Poli1],[],[Z|Polir]):-
+	Z is X+0,
+	suma(Poli1,[],Polir).
+
+%resta(i,i,o).
+%El caso de las restas es igual, solo que el Z is cambia a X-Y
+resta([],[],[]).
+
+%Después hacemos el caso donde son del mismo tamaño.
+resta([X|Poli1],[Y|Poli2],[Z|Polir]):-
+	Z is X-Y,
+	resta(Poli1,Poli2,Polir).
+
+%Estas dos partes adicionales las ponemos para cuando los polinomios son de diferente tamaño.
+resta([],[Y|Poli2],[Z|Polir]):-
+	Z is 0-Y,
+	resta([],Poli2,Polir).
+resta([X|Poli1],[],[Z|Polir]):-
+	Z is X-0,
+	resta(Poli1,[],Polir).
+
+
+
